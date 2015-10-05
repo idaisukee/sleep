@@ -18,6 +18,7 @@
 ,16,L
 2015/10/6,12.5
 ```
+=end
 
 data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv' # || は = よりも優先順位が上．
 File.open(data) do |file|
