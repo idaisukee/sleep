@@ -10,7 +10,7 @@ data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv'
 file = File.open(data)
 $wrong_lines = Array.new
 
-def err (line_num, error_type)
+def err (line_num, error_type = nil)
   $wrong_lines << line_num.to_i
 end
 
