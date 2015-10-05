@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
-=begin
-if ARGV[0] == nil
-  file = File.open('/home/daisuke/src/sleep/machigatta.csv')
-else
-  file = File.open(ARGV[0])
-end
-=end
 data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv'
 file = File.open(data)
 $wrong_lines = Array.new
 $errors = Hash.new
 def err (line_num, error_type = nil)
   $wrong_lines << line_num.to_i
+  
+  
   $errors.store(line_num, error_type)
+  
 end
 
 file.each do |line|
@@ -87,6 +83,7 @@ file.each do |line|
       err(file.lineno, 'es')
     end
   end
+
   if $wrong_lines.include? file.lineno
     print $errors[file.lineno], ' ', file.lineno, ' ', line, "\n"
   end
