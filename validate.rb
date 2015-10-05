@@ -71,7 +71,7 @@ file.each do |line|
     meal_time_and_types = cols[2].split(' ')
     meal_time_and_types.each do |meal_time_and_type|
       unless meal_time_and_type.match(/[0-9]{4}[sk]/)
-        err(file.lineno)
+        err(file.lineno, 'mtt')
       end
     end
   end
