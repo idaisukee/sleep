@@ -80,14 +80,15 @@ file.each do |line|
 
   emo_scores.each do |emo_score|
     unless emo_score.to_f.abs < 3
-      err(file.lineno)
+      err(file.lineno, 'abs')
     end
     unless (emo_score.match(/-*[0-9](\.[0-9])*/) or
             emo_score == 'x')
+      err(file.lineno, 'es')
     end
   end
   if $wrong_lines.include? file.lineno
-    print file.lineno, ' ', line
+    print $errors[file.lineno], ' ', file.lineno, ' ', line.chomp, "\n"
   end
 end
 
