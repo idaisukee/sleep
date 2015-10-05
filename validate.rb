@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-
+=begin
 if ARGV[0] == nil
   file = File.open('/home/daisuke/src/sleep/machigatta.csv')
 else
   file = File.open(ARGV[0])
 end
-
+=end
+data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv'
+file = File.open(data)
 $wrong_lines = Array.new
 
 def err (line_num, error_type)
