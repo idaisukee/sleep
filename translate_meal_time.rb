@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #require "kconv"
-#source = "example.csv"
-#source = "mori_meal_time_2.csv"
-#source = "hirata_meal_utf8.csv"
-source = ARGV[0] or '/home/daisuke/src/sleep/machigatta.csv'
-File.open(source) do |file|
+data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv' # || は = よりも優先順位が上．
   file.each_line do |line|
     date_cell = line.split(",")[0] # 0列目を取出す．
     time_and_type_cell = line.split(",")[1].strip # 1列目を取り出す．
