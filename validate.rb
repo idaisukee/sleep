@@ -9,9 +9,10 @@ end
 data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv'
 file = File.open(data)
 $wrong_lines = Array.new
-
+$errors = Hash.new
 def err (line_num, error_type = nil)
   $wrong_lines << line_num.to_i
+  $errors.store(line_num, error_type)
 end
 
 file.each do |line|
@@ -22,7 +23,7 @@ file.each do |line|
   # comma 個數
 
   unless size == 11
-    err(file.lineno)
+    err(file.lineno, 'com')
   end
 
   # 日附
@@ -31,22 +32,22 @@ file.each do |line|
   date_elems = full_date.split('/')
   unless date_elems.size == 3
     # 日附 size
-    err(file.lineno)
+    err(file.lineno, 'fds')
   end
   year = date_elems[0]
   month = date_elems[1]
   day = date_elems[2]
   unless year.match(/[0-9]{4}/)
     # 年
-    err(file.lineno)
+    err(file.lineno, 'yr')
   end
   unless month.match(/[0-9]{1,2}/)
     # 月
-    err(file.lineno)
+    err(file.lineno, 'mon')
   end
   unless day.match(/[0-9]{1,2}/)
     # 日
-    err(file.lineno)
+    err(file.lineno, 'day')
   end
     
   # 起きてゐた時間
@@ -55,15 +56,15 @@ file.each do |line|
   awake_times.each do |awake_time|
     minutes = awake_time.split('-')
     unless minutes.size == 2
-      err(file.lineno)
+      err(file.lineno, 'ats')
     end
     minutes.each do |minute|
       unless minute.size == 4
-        err(file.lineno)
+        err(file.lineno, 'ams')
       end
-
+      
       unless minute.match(/[0-9]{4}/)
-        err(file.lineno)
+        err(file.lineno, 'amn')
       end
     end
 
