@@ -75,7 +75,7 @@ file.each do |line|
   emo_scores = cols[3..-1]
 
   emo_scores.each do |emo_score|
-    unless emo_score.to_f.abs < 3
+    unless emo_score.to_f.abs < 100
       err(file.lineno, 'abs')
     end
     unless (emo_score.match(/-*[0-9](\.[0-9])*/) or
