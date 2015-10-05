@@ -3,8 +3,8 @@
 #require "kconv"
 #source = "example.csv"
 #source = "mori_meal_time_2.csv"
-source = "hirata_meal_utf8.csv"
-
+#source = "hirata_meal_utf8.csv"
+source = ARGV[0] or '/home/daisuke/src/sleep/machigatta.csv'
 File.open(source) do |file|
   file.each_line do |line|
     date_cell = line.split(",")[0]
