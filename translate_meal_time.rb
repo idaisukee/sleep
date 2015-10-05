@@ -1,6 +1,24 @@
 # -*- coding: utf-8 -*-
 
 #require "kconv"
+
+=begin
+山中先生の仕事のための script.
+## 入力
+```
+日附,食事時刻と種別,...
+2015/10/5,1200s 1600k,...
+2015/10/6,1230s,...
+```
+
+## 出力
+```
+日附,食事時刻,間食記號
+2015/10/5,12
+,16,L
+2015/10/6,12.5
+```
+
 data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv' # || は = よりも優先順位が上．
 File.open(data) do |file|
   file.each_line do |line|
