@@ -39,17 +39,16 @@ File.open(data) do |file|
       awake_ranges = time_cell.split(" ")
       # => ["0900-1000", "1300-2000"]
 
-    awake_ranges.each do |awake_range|
-      digital = awake_range.split("-")
-      start = digital[0]
-      finish = digital[1]
+      awake_ranges.each do |awake_range|
+        digital = awake_range.split("-")
+        # => ["0900", "1000"]
+        start = digital[0]
+        finish = digital[1]
+      end
       true_start = Time.local(year, month, date, start.hour, start.min)
       true_finish = Time.local(year, month, date, finish.hour, finish.min) - 10 * 60
       $true_awake_ranges << Range.new(true_start, true_finish)
     end
-    
-
-
   end
 end
 
