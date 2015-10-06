@@ -20,11 +20,16 @@
 ```
 =end
 
+# 日附，食事時刻と種別の入つてゐる列を示す magic number
+date_cell_position = 0
+time_and_type_cell_position = 2
+
+
 data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv' # || は = よりも優先順位が上．
 File.open(data) do |file|
   file.each_line do |line|
-    date_cell = line.split(",")[0] # 0列目を取出す．
-    time_and_type_cell = line.split(",")[1].strip # 1列目を取り出す．
+    date_cell = line.split(",")[date_cell_position] # 日附を取出す．
+    time_and_type_cell = line.split(",")[time_and_type_cell_position].strip # 食事時刻と種別を取り出す．
     times_and_types = time_and_type_cell.split(" ")
     # => ["1230s", "1545k", "1650s"]
 
