@@ -51,6 +51,17 @@ file.each do |line|
   awake_times = awake_time_col.split(' ')
   awake_times.each do |awake_time|
     minutes = awake_time.split('-')
+    minutes.each do |minute|
+      hr = minute[0..1].to_i
+      min = minute[2..3].to_i
+      unless hr.between?(0, 24)
+        err(file.lineno, 'hr')
+      end
+      unless min.between?(0,60)
+        err(file.lineno, 'min')
+      end
+    end
+    
     unless minutes.size == 2
       err(file.lineno, 'ats')
     end
