@@ -33,34 +33,32 @@ File.open(data) do |file|
     times_and_types = time_and_type_cell.split(" ")
     # => ["1230s", "1545k", "1650s"]
 
-    if time_and_type_cell == "" then
+    if time_and_type_cell == "" or time_and_type_cell == "x" then
       # 缺損値のとき
       print date_cell, ",,\n"
-    end
-
-    times_and_types.each_with_index do |time_and_type, index|
-      hour = time_and_type.split("")[0..1].join # => "12"
-      minute = time_and_type.split("")[2..3].join # => "30"
-      decimal_minute = (minute.to_f / 60.0).round(2) # => .5
-      type = time_and_type.split("")[4] # => "s"
+    else
+      times_and_types.each_with_index do |time_and_type, index|
+        hour = time_and_type.split("")[0..1].join # => "12"
+        minute = time_and_type.split("")[2..3].join # => "30"
+        decimal_minute = (minute.to_f / 60.0).round(2) # => .5
+        type = time_and_type.split("")[4] # => "s"
       
-      if index == 0 then
-        print date_cell
-      end
+        if index == 0 then
+          print date_cell
+        end
 
-      print ","
+        print ","
         
-      print hour.to_f + decimal_minute
+        print hour.to_f + decimal_minute
 
-      print ","
+        print ","
 
-      if type == "k" then
-        print "L"
+        if type == "k" then
+          print "L"
+        end
+
+        print "\n"
       end
-
-      print "\n"
-
-
     end
   end
 end

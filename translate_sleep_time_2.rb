@@ -32,8 +32,12 @@ File.open(data) do |file|
     true_full_date = Date.new(year, month, date)
     time_cell = line.split(",")[1].strip
     # => "0900-1000 1300-2000"
-    awake_ranges = time_cell.split(" ")
-    # => ["0900-1000", "1300-2000"]
+    if time_cell == "" or time_cell =="x" then
+      start = "0000"
+      finish = "2400"
+    else
+      awake_ranges = time_cell.split(" ")
+      # => ["0900-1000", "1300-2000"]
 
     awake_ranges.each do |awake_range|
       digital = awake_range.split("-")
