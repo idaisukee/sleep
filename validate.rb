@@ -11,6 +11,28 @@ def err (line_num, error_type = nil)
   
 end
 
+
+class String
+  @@err_code_to_msg = {
+    'com' => 'コンマの数',
+    'yr' => '年',
+    'mon' => '月',
+    'day' => '日',
+    'hr' => '時',
+    'min' => '分',
+    'ams' => '起きていた時間の時刻桁数',
+    'amn' => '起きていた時間の時刻',
+    'mtt' => '食事時刻',
+    'abs' => '気分得点の絶対値',
+    'es' => '気分得点',
+  }
+
+  def to_msg
+    @@err_code_to_msg[self] or self
+  end
+end
+
+print 'com'.to_msg
 file.each do |line|
   # print file.lineno
   
