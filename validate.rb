@@ -13,6 +13,7 @@ end
 
 file.each do |line|
   # print file.lineno
+  
   cols = line.chomp.split(',')
   size = cols.size
 
@@ -96,7 +97,7 @@ file.each do |line|
   end
 
   if $wrong_lines.include? file.lineno
-    print $errors[file.lineno], ' ', file.lineno, ' ', line, "\n"
+    print $errors[file.lineno], ' ', file.lineno, ' ', line.chomp, "\n"
   end
 end
 
