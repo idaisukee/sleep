@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+require 'date'
+
 data = ARGV[0] || '/home/daisuke/src/sleep/machigatta.csv'
 file = File.open(data)
 $wrong_lines = Array.new
@@ -69,6 +71,12 @@ file.each do |line|
     err(file.lineno, 'day')
   end
     
+  begin
+    Date.new(year.to_i, month.to_i, day.to_i)
+  rescue => e
+    err(file.lineno, 'date')
+  end
+
   # 起きてゐた時間
   awake_time_col = cols[1]
   awake_times = awake_time_col.split(' ')
@@ -77,6 +85,12 @@ file.each do |line|
     minutes.each do |minute|
       hr = minute[0..1].to_i
       min = minute[2..3].to_i
+      begin
+        Time.new(year.to_i, month.to_i, day.to_i, hr, min)
+      rescue => e
+        err(file.lineno, 'time')
+      end
+
       unless hr.between?(0, 24)
         err(file.lineno, 'hr')
       end
