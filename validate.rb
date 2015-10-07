@@ -6,8 +6,8 @@ $errors = Hash.new
 def err (line_num, error_type = nil)
   $wrong_lines << line_num.to_i
   
-  
-  $errors.store(line_num, error_type)
+  $errors[line_num] ||= Array.new
+  $errors[line_num] <<  error_type
   
 end
 
