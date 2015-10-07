@@ -119,7 +119,9 @@ file.each do |line|
   end
 
   if $wrong_lines.include? file.lineno
-    print $errors[file.lineno].uniq.join(','), ' ', file.lineno, ' ', line.chomp, "\n"
+    print $errors[file.lineno].uniq.map{|x| x.to_msg}.join(','), ' ', file.lineno, ' ', line.chomp, "\n"
+
+
   end
 end
 
