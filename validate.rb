@@ -32,6 +32,22 @@ class String
   def to_msg
     @@err_code_to_msg[self] or self
   end
+
+  def cut_sgn
+    if self[0] == '-'
+      self[1..-1]
+    else
+      self
+    end
+  end
+
+  def before_dot
+    self.split('.')[0]
+  end
+  
+  def after_dot
+    self.split('.')[1]
+  end
 end
 
 print 'com'.to_msg
@@ -123,10 +139,20 @@ file.each do |line|
   emo_scores = cols[3..-1]
 
   emo_scores.each do |emo_score|
+    digits = emo_score.split('')
+    unless emo_score.cut_sgn.before_dot.match(/[0-9]{1,}/)
+      err(file.lineno, 'bef')
+    end
+    if emo_score.cut_sgn.size > 1
+      unless emo_score.cut_sgn.after_dot.match(/[0-9]{1,}/)
+        err(file.lineno, 'aft')
+      end
+    end
+
     unless emo_score.to_f.abs < 100
       err(file.lineno, 'abs')
     end
-    unless (emo_score.match(/-*[0-9](\.[0-9])*/) or
+    unless (emo_score.match(/-{0,1}[0-9]\.[0-9])*/)) or
             emo_score == 'x')
       err(file.lineno, 'es')
     end
@@ -138,6 +164,3 @@ file.each do |line|
 
   end
 end
-
-
-
