@@ -49,8 +49,6 @@ end
 # e = DateCol.new(1, s)
 # p e.s_day.to_i
 
-p 'string'.to_s
-
 records.each do |record|
   puts [record.lineno, record.valid?, record.date_col.valid?, record.sleep_col.valid?, 
         record.meal_col.valid?, record.emo_cols.valid?].join(' ')
@@ -62,6 +60,8 @@ records.each do |record|
   puts [record.sleep_col.to_s, record.sleep_col.valid?].join(' ')
   puts
   puts [record.meal_col.to_s, record.meal_col.valid?].join(' ')
+  puts
+  puts [record.emo_cols.to_s, record.emo_cols.valid?].join(' ')
 end
 
 

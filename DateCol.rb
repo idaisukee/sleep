@@ -2,9 +2,11 @@ require './base'
 
 
 class Year < String
+
   def initialize(string)
     @string = string
   end
+
   def valid? 
     if
         @string.match(/^[0-9]{4}$/)
@@ -15,17 +17,21 @@ class Year < String
       rescue
         false
       end
+    else
+      false
     end
   end
-   def to_s
-     "#@string"
-   end
+
+  def to_s
+    "#@string"
+  end
 end
 
 class Month < String
   def initialize(string)
     @string = string
   end
+
   def valid? 
     if
         @string.match(/^[0-9]{1,2}$/)
@@ -36,8 +42,11 @@ class Month < String
       rescue
         false
       end
+    else
+      false
     end
   end
+  
   def to_s
     "#@string"
   end
@@ -57,8 +66,11 @@ class Day < String
       rescue
         false
       end
+    else 
+      false
     end
   end
+
   def to_s
     "#@string"
   end
@@ -90,8 +102,12 @@ class DateCol < String
       rescue
         false
       end
+    else
+      false
     end
+
   end
+
 
   def to_s
     "#@col"

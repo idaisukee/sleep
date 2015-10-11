@@ -3,7 +3,6 @@ require './base'
 class MealItem < String
   def initialize(string)
     @string = string
- @string[0..3]
     @mil_time = MilTime.new(@string[0..3])
     @meal_type = @string[4]
   end

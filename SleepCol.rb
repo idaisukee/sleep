@@ -9,6 +9,7 @@ class SleepCol < String
     end
   end
   def valid?
+    @col.missing? or
     @sleep_ranges.all? {|x| x.valid?}
   end
 
@@ -27,7 +28,8 @@ class SleepRange < String
   end
   def valid?
     @sleep_range.match(/^[0-9]{4}-[0-9]{4}$/) and
-    @mil_times.all? {|x| x.valid?}
+      @mil_times[0].to_t < @mil_times[1].to_t and
+      @mil_times.all? {|x| x.valid?}
   end
 
   def to_s

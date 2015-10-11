@@ -60,4 +60,9 @@ class MilTime < String
     "#@string"
   end
 
+  def to_t
+    Time.new(1000, 10, 10, @s_hour.to_i, @s_minute.to_i)
+  end
+
+
 end
