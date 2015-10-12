@@ -34,7 +34,7 @@ class String
   end
 end
 
-print 'com'.to_msg
+
 file.each do |line|
   # print file.lineno
   
