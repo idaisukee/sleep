@@ -44,10 +44,11 @@ File.open(data) do |file|
         # => ["0900", "1000"]
         start = digital[0]
         finish = digital[1]
+
+        true_start = Time.local(year, month, date, start.hour, start.min)
+        true_finish = Time.local(year, month, date, finish.hour, finish.min) - 10 * 60
+        $true_awake_ranges << Range.new(true_start, true_finish)
       end
-      true_start = Time.local(year, month, date, start.hour, start.min)
-      true_finish = Time.local(year, month, date, finish.hour, finish.min) - 10 * 60
-      $true_awake_ranges << Range.new(true_start, true_finish)
     end
   end
 end
