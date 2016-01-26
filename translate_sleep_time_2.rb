@@ -60,7 +60,7 @@ File.open(data) do |file|
     month = full_date.split("/")[1].to_i
     date = full_date.split("/")[2].to_i
     start = Time.local(year, month, date, 0, 0)
-    finish = Time.local(year,month, date, 24, 0)
+    finish = Time.local(year,month, date, 23, 59)
     one_day = Range.new(start, finish)
     one_day.each_10_min do |time|
 
